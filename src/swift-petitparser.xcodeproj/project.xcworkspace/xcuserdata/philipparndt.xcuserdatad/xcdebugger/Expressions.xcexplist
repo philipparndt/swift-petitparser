@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "static CharacterRange.toCharacterPredicate(_:):CharacterRange.swift">
+      </ContextState>
+      <ContextState
+         contextName = "EndOfInputParser.parseOn(_:):EndOfInputParser.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "context.position..&lt;context.buffer.endIndex.isEmpty">
+            </PersistentString>
+            <PersistentString
+               value = "context.buffer.endIndex">
+            </PersistentString>
+            <PersistentString
+               value = "context.position..&lt;context.buffer.endIndex">
+            </PersistentString>
+            <PersistentString
+               value = "context.buffer">
+            </PersistentString>
+            <PersistentString
+               value = "context.buffer.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SequenceParser.fastParseOn(_:_:):SequenceParser.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static Functions.separateByUnpack():Functions.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ActionParser.fastParseOn(_:_:):ActionParser.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ExamplesTests.product(_:):ExamplesTest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PossessiveRepeatingParser.parseOn(_:):PossessiveRepeatingParser.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ChoiceParser.parseOn(_:):ChoiceParser.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static Assert.assertSuccess&lt;A&gt;(_:_:_:_:):Assert.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "result.isFailure()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CharacterTest.testPatternWithSingle1():CharacterTest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in ExamplesTests.testExpression():ExamplesTest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(nums[0] as! Int) * (nums[0] as! Int)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SequenceParser.parseOn(_:):SequenceParser.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parsers">
+            </PersistentString>
+            <PersistentString
+               value = "String(reflecting: context)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Success.get&lt;A&gt;():Success.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Mirror.iterate():Mirror.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "todo.endIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static Assert.assertFailure(_:_:_:):Assert.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "result.isFailure()">
+            </PersistentString>
+            <PersistentString
+               value = "result.isSuccess()">
+            </PersistentString>
+            <PersistentString
+               value = "result.message!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ActionParser.parseOn(_:):ActionParser.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
