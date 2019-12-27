@@ -191,14 +191,13 @@ Writing such expression parsers is pretty common and can be quite tricky to get 
 
 The following code creates the empty expression builder:
 
-```java
-ExpressionBuilder builder = new ExpressionBuilder();
+```swift
+let builder = ExpressionBuilder()
 ```
 
 Then we define the operator-groups in descending precedence. The highest precedence are the literal numbers themselves. This time we accept floating point numbers, not just integers. In the same group we add support for parenthesis:
 
 ```swift
-let builder = ExpressionBuilder()
 builder.group()
     .primitive(NumbersParser.double())
     .wrapper(CP.of("(").trim(), CP.of(")").trim(), { (nums: [Any]) -> Any in nums[1] })
