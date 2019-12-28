@@ -12,8 +12,17 @@ It has been adapted to Swift mainly as coding kata.
 Installation
 ------------
 
-- Swift package to be done
-- CocoaPod to be done
+### Swift package 
+
+Use `https://github.com/philipparndt/swift-petitparser.git` as Swift package
+
+### CocoaPod
+
+```
+target 'MyApp' do
+  pod 'swift-petitparser', '~> 1.0'
+end
+```
 
 Tutorial
 --------
