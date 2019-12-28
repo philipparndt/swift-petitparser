@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2209C86A23B71525007C1D93 /* ValidationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209C86923B71525007C1D93 /* ValidationParser.swift */; };
 		22406A3723ACF8250088132B /* ExpressionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22406A3623ACF8250088132B /* ExpressionBuilder.swift */; };
 		22406A3923ACF8D30088132B /* ExpressionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22406A3823ACF8D30088132B /* ExpressionGroup.swift */; };
 		22406A3B23AD31FE0088132B /* ParsersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22406A3A23AD31FE0088132B /* ParsersTest.swift */; };
@@ -86,6 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2209C86923B71525007C1D93 /* ValidationParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationParser.swift; sourceTree = "<group>"; };
 		22406A3623ACF8250088132B /* ExpressionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionBuilder.swift; sourceTree = "<group>"; };
 		22406A3823ACF8D30088132B /* ExpressionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionGroup.swift; sourceTree = "<group>"; };
 		22406A3A23AD31FE0088132B /* ParsersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsersTest.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				22872F8323AA30DA00713E7E /* OptionalParser.swift */,
 				22872F8523AA324100713E7E /* SequenceParser.swift */,
 				22872F8723AA34AF00713E7E /* SettableParser.swift */,
+				2209C86923B71525007C1D93 /* ValidationParser.swift */,
 			);
 			path = combinators;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				22872F9A23AB597600713E7E /* LimitedRepeatingParser.swift in Sources */,
 				22872FB223AC0B5400713E7E /* CharacterRange.swift in Sources */,
 				22872F8C23AA550100713E7E /* CharacterParser.swift in Sources */,
+				2209C86A23B71525007C1D93 /* ValidationParser.swift in Sources */,
 				22872F8823AA34AF00713E7E /* SettableParser.swift in Sources */,
 				22872F9823AB595E00713E7E /* GreedyRepeatingParser.swift in Sources */,
 				22872F9223AA734200713E7E /* ActionParser.swift in Sources */,

@@ -1,29 +1,32 @@
 //
-//  NotParser.swift
+//  ValidationParser.swift
 //  swift-petitparser
 //
-//  Created by Philipp Arndt on 2019-12-18.
+//  Created by Philipp Arndt on 2019-12-28.
 //  Copyright © 2019 petitparser. All rights reserved.
 //
 
 import Foundation
 
-public class NotParser: DelegateParser {
-    
+public class ValidationParser<T>: DelegateParser {
     let message: String
-    
-    public init(_ delegate: Parser, _ message: String) {
+    let validator: (Context, T) -> Result?
+
+    public init(_ delegate: Parser, _ validator: @escaping (Context, T) -> Result?, _ message: String) {
         self.message = message
+        self.validator = validator
         super.init(delegate)
     }
     
     public override func parseOn(_ context: Context) -> Result {
         let result = delegate.parseOn(context)
+        
         if result.isFailure() {
-            return context.success(NSNull())
+            return result
         }
         else {
-            return context.failure(message)
+            let value: T = result.get()!
+            return validator(context, value) ?? result
         }
     }
     
@@ -33,7 +36,7 @@ public class NotParser: DelegateParser {
     }
 
     public override func hasEqualProperties(_ other: Parser) -> Bool {
-        if let oth = other as? NotParser {
+        if let oth = other as? ValidationParser {
             return super.hasEqualProperties(other)
                 && oth.message == message
         }
@@ -42,16 +45,16 @@ public class NotParser: DelegateParser {
     }
     
     public override func copy() -> Parser {
-        return NotParser(delegate, message)
+        return ValidationParser(delegate, validator, message)
     }
 }
 
 extension Parser {
-    public func not() -> Parser {
-      return not("unexpected")
+    public func validate<T>(_ validator: @escaping (Context, T) -> Result?) -> Parser {
+      return validate(validator, "validation failed")
     }
     
-    public func not(_ message: String) -> Parser {
-      return NotParser(self, message)
+    public func validate<T>(_ validator: @escaping (Context, T) -> Result?, _ message: String) -> Parser {
+      return ValidationParser(self, validator, message)
     }
 }
