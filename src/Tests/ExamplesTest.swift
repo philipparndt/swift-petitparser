@@ -238,5 +238,34 @@ class ExamplesTests: XCTestCase {
         Assert.assertSuccess(intCalculator, "8/4/2", 1)
         Assert.assertSuccess(intCalculator, "2^2^3", 256)
      }
+
+    func testIPAddress() {
+        let ip = NumbersParser.int(from: 0, to: 255)
+            .seq(CP.of(".").seq(NumbersParser.int(from: 0, to: 255)).times(3))
+            .flatten().trim()
+        
+        Assert.assertSuccess(ip, "10.0.0.1", "10.0.0.1")
+        Assert.assertSuccess(ip, " 10.0.0.1", "10.0.0.1")
+    }
+
+    func testHostName() {
+        let host = CP.pattern("a-zA-Z0-9.").plus()
+            .flatten().trim()
+        
+        Assert.assertSuccess(host, " some.example.com ", "some.example.com")
+    }
     
+    func testIPAddressOrHostName() {
+        let ip = NumbersParser.int(from: 0, to: 255)
+            .seq(CP.of(".").seq(NumbersParser.int(from: 0, to: 255)).times(3))
+            .flatten().trim()
+        
+        let host = CP.pattern("a-zA-Z0-9.").plus()
+            .flatten().trim()
+        
+        let parser = ip.or(host)
+        Assert.assertSuccess(parser, "10.0.0.1", "10.0.0.1")
+        Assert.assertSuccess(parser, " 10.0.0.1", "10.0.0.1")
+        Assert.assertSuccess(parser, " some.example.com ", "some.example.com")
+    }
 }

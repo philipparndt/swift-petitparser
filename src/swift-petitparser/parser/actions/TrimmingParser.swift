@@ -20,11 +20,12 @@ public class TrimmingParser: DelegateParser {
     
     public override func parseOn(_ context: Context) -> Result {
         var current = context
+        let buffer = current.buffer
         
         // Trim the left part:
-        let before = consume(left, current.buffer, current.position)
+        let before = consume(left, buffer, current.position)
         if before != context.position {
-            current = Context(current.buffer, before)
+            current = Context(buffer, before)
         }
 
         // Consume the delegate:
@@ -34,7 +35,7 @@ public class TrimmingParser: DelegateParser {
         }
 
         // Trim the right part:
-        let after = consume(right, current.buffer, result.position)
+        let after = consume(right, buffer, result.position)
         return after == result.position ? result :
             result.success(result.get()!, after)
     }
