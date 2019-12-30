@@ -11,7 +11,7 @@ import Foundation
 public class NumbersParser {
     public class func int() -> Parser {
         return CharacterParser.digit().plus()
-        .flatten().trim()
+        .flatten()
         .map { (int: String) -> Int in Int(int)! }
     }
     
@@ -31,7 +31,7 @@ public class NumbersParser {
     public class func double() -> Parser {
         return CharacterParser.digit().plus().seq(CharacterParser.of(".")
         .seq(CharacterParser.digit().plus()).optional())
-        .flatten().trim()
+        .flatten()
         .map { (double: String) -> Double in Double(double)! }
     }
     
