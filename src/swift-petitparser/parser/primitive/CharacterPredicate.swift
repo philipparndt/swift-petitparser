@@ -72,7 +72,7 @@ public class CharacterPredicates {
         
         return CharacterPredicate(matcher: { value in
             let index = bisect(starts, value)
-            return index >= 0 || value <= stops[-index - 1]
+            return index >= 0 || index < -1 && value <= stops[-index - 2]
         })
     }
     
@@ -93,7 +93,7 @@ public class CharacterPredicates {
                 max = mid
             }
         }
-        return -min
+        return -(min + 1)
     }
 
     static func digit() -> CharacterPredicate {
