@@ -25,20 +25,33 @@ class ParsersTests: XCTestCase {
     }
     
     func testChoice2() {
-        let parser = CP.of("a").or(CP.of("b"))
-        Assert.assertSuccess(parser, "a", char("a"))
-        Assert.assertSuccess(parser, "b", char("b"))
-        Assert.assertFailure(parser, "c")
-        Assert.assertFailure(parser, "")
+        let parser1 = CP.of("a").or(CP.of("b"))
+        Assert.assertSuccess(parser1, "a", char("a"))
+        Assert.assertSuccess(parser1, "b", char("b"))
+        Assert.assertFailure(parser1, "c")
+        Assert.assertFailure(parser1, "")
+		
+		let parser2 = CP.of("a") | CP.of("b")
+        Assert.assertSuccess(parser2, "a", char("a"))
+        Assert.assertSuccess(parser2, "b", char("b"))
+        Assert.assertFailure(parser2, "c")
+        Assert.assertFailure(parser2, "")
     }
-    
-    func testChoice3() {
-        let parser = CP.of("a").or(CP.of("b")).or(CP.of("c"))
-        Assert.assertSuccess(parser, "a", char("a"))
-        Assert.assertSuccess(parser, "b", char("b"))
-        Assert.assertSuccess(parser, "c", char("c"))
-        Assert.assertFailure(parser, "d")
-        Assert.assertFailure(parser, "")
+
+	func testChoice3() {
+        let parser1 = CP.of("a").or(CP.of("b")).or(CP.of("c"))
+        Assert.assertSuccess(parser1, "a", char("a"))
+        Assert.assertSuccess(parser1, "b", char("b"))
+        Assert.assertSuccess(parser1, "c", char("c"))
+        Assert.assertFailure(parser1, "d")
+        Assert.assertFailure(parser1, "")
+		
+        let parser2 = CP.of("a") | CP.of("b") | CP.of("c")
+        Assert.assertSuccess(parser2, "a", char("a"))
+        Assert.assertSuccess(parser2, "b", char("b"))
+        Assert.assertSuccess(parser2, "c", char("c"))
+        Assert.assertFailure(parser2, "d")
+        Assert.assertFailure(parser2, "")
     }
     
     func testEndOfInput() {
@@ -98,6 +111,13 @@ class ParsersTests: XCTestCase {
         Assert.assertFailure(parser, "")
         Assert.assertFailure(parser, "1", 1, "letter expected")
         Assert.assertFailure(parser, "12", 1, "letter expected")
+		
+		let parser2 = (CP.digit() + CP.letter()).pick(1)
+        Assert.assertSuccess(parser2, "1a", char("a"))
+        Assert.assertSuccess(parser2, "2b", char("b"))
+        Assert.assertFailure(parser2, "")
+        Assert.assertFailure(parser2, "1", 1, "letter expected")
+        Assert.assertFailure(parser2, "12", 1, "letter expected")
     }
     
     func testPickLast() {
@@ -160,6 +180,13 @@ class ParsersTests: XCTestCase {
         Assert.assertSuccess(parser, "", Assert.NULL)
     }
     
+    func testNotAlternative() {
+		let parser = !CP.of("a")
+        Assert.assertFailure(parser, "a", "unexpected")
+        Assert.assertSuccess(parser, "b", Assert.NULL, 0)
+        Assert.assertSuccess(parser, "", Assert.NULL)
+    }
+	
     func testOptional() {
         let parser = CP.of("a").optional()
         Assert.assertSuccess(parser, "a", char("a"))

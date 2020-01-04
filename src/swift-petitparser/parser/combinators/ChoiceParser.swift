@@ -50,6 +50,12 @@ public class ChoiceParser: ListParser {
     }
 }
 
+extension Parser {
+	static func | (lhs: Parser, rhs: Parser) -> Parser {
+		return lhs.or(rhs)
+    }
+}
+
 extension ChoiceParser: CustomStringConvertible {
     public var description: String {
         let className = String(describing: type(of: self))

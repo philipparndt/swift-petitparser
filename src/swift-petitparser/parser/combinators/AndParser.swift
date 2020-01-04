@@ -29,3 +29,13 @@ public class AndParser: DelegateParser {
         return AndParser(delegate)
     }
 }
+
+extension Parser {
+    public func and() -> Parser {
+      return AndParser(self)
+    }
+	
+	static func & (lhs: Parser, rhs: Parser) -> Parser {
+        return lhs.and().seq(rhs)
+    }
+}

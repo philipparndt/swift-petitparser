@@ -41,11 +41,7 @@ public class EndOfInputParser: Parser {
 }
 
 extension Parser {
-    public func end() -> Parser {
-        return end("end of input expected")
-    }
-
-    public func end(_ message: String) -> Parser {
+    public func end(_ message: String = "end of input expected") -> Parser {
         let parser = EndOfInputParser(message)
         return SequenceParser(self, parser).pick(0)
     }

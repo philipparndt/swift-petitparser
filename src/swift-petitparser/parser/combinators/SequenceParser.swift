@@ -60,6 +60,12 @@ public class SequenceParser: ListParser {
     }
 }
 
+extension Parser {
+	static func + (lhs: Parser, rhs: Parser) -> Parser {
+        return lhs.seq(rhs)
+    }
+}
+
 extension SequenceParser: CustomStringConvertible {
     public var description: String {
         let className = String(describing: type(of: self))

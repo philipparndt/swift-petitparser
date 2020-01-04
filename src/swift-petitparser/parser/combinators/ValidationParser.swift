@@ -50,11 +50,7 @@ public class ValidationParser<T>: DelegateParser {
 }
 
 extension Parser {
-    public func validate<T>(_ validator: @escaping (Context, T) -> Result?) -> Parser {
-      return validate(validator, "validation failed")
-    }
-    
-    public func validate<T>(_ validator: @escaping (Context, T) -> Result?, _ message: String) -> Parser {
+    public func validate<T>(_ validator: @escaping (Context, T) -> Result?, _ message: String = "validation failed") -> Parser {
       return ValidationParser(self, validator, message)
     }
 }

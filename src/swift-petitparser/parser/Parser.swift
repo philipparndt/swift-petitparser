@@ -59,21 +59,13 @@ public class Parser {
         return SequenceParser(parsers)
     }
     
-    public func and() -> Parser {
-      return AndParser(self)
-    }
-    
     public func or(_ others: Parser...) -> ChoiceParser {
         var parsers = others
         parsers.insert(self, at: 0)
         return ChoiceParser(parsers)
     }
     
-    public func neg() -> Parser {
-      return neg("not expected")
-    }
-    
-    public func neg(_ message: String) -> Parser {
+    public func neg(_ message: String = "not expected") -> Parser {
         return not(message).seq(CharacterParser.any()).pick(1)
     }
     

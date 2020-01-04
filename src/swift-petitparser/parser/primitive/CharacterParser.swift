@@ -31,11 +31,7 @@ public class CharacterParser: Parser {
         return of(CharacterPredicates.of(character), message)
     }
     
-    public class func any() -> CharacterParser {
-        return any("any character expected")
-    }
-
-    public class func any(_ message: String) -> CharacterParser {
+    public class func any(_ message: String = "any character expected") -> CharacterParser {
         return CharacterParser(CharacterPredicates.any(), message)
     }
     
@@ -47,11 +43,7 @@ public class CharacterParser: Parser {
       return of(CharacterPredicates.anyOf(chars), message)
     }
 
-    public class func none() -> CharacterParser {
-      return none("no character expected")
-    }
-
-    public class func none(_ message: String) -> CharacterParser {
+    public class func none(_ message: String = "no character expected") -> CharacterParser {
       return of(CharacterPredicates.none(), message)
     }
 
@@ -63,27 +55,15 @@ public class CharacterParser: Parser {
       return of(CharacterPredicates.noneOf(chars), message)
     }
 
-    public class func digit() -> CharacterParser {
-      return digit("digit expected")
-    }
-
-    public class func digit(_ message: String) -> CharacterParser {
+    public class func digit(_ message: String = "digit expected") -> CharacterParser {
         return CharacterParser(CharacterPredicates.digit(), message)
     }
-    
-    public class func letter() -> CharacterParser {
-      return letter("letter expected")
-    }
 
-    public class func letter(_ message: String) -> CharacterParser {
+    public class func letter(_ message: String = "letter expected") -> CharacterParser {
         return CharacterParser(CharacterPredicates.letter(), message)
     }
-    
-    public class func lowerCase() -> CharacterParser {
-      return lowerCase("lowercase letter expected")
-    }
 
-    public class func lowerCase(_ message: String) -> CharacterParser {
+    public class func lowerCase(_ message: String = "lowercase letter expected") -> CharacterParser {
         return CharacterParser(CharacterPredicates.lowerCase(), message)
     }
     
@@ -103,27 +83,15 @@ public class CharacterParser: Parser {
         return of(CharacterPredicates.range(start, stop), message)
     }
     
-    public class func upperCase() -> CharacterParser {
-      return upperCase("uppercase letter expected")
-    }
-
-    public class func upperCase(_ message: String) -> CharacterParser {
+    public class func upperCase(_ message: String = "uppercase letter expected") -> CharacterParser {
         return CharacterParser(CharacterPredicates.upperCase(), message)
     }
-    
-    public class func whitespace() -> CharacterParser {
-      return whitespace("whitespace expected")
-    }
 
-    public class func whitespace(_ message: String) -> CharacterParser {
+    public class func whitespace(_ message: String = "whitespace expected") -> CharacterParser {
         return CharacterParser(CharacterPredicates.whitespace(), message)
     }
-        
-    public class func word() -> CharacterParser {
-      return word("letter or digit expected")
-    }
 
-    public class func word(_ message: String) -> CharacterParser {
+    public class func word(_ message: String = "letter or digit expected") -> CharacterParser {
         return CharacterParser(CharacterPredicates.word(), message)
     }
     
@@ -153,7 +121,7 @@ public class CharacterParser: Parser {
         return nil
     }
     
-    public override func neg(_ message: String) -> Parser {
+	public override func neg(_ message: String = "not expected") -> Parser {
         // Return an optimized version of the receiver.
         return CharacterParser.of(matcher.not(), message)
     }

@@ -47,11 +47,11 @@ public class NotParser: DelegateParser {
 }
 
 extension Parser {
-    public func not() -> Parser {
-      return not("unexpected")
-    }
-    
-    public func not(_ message: String) -> Parser {
+    public func not(_ message: String = "unexpected") -> Parser {
       return NotParser(self, message)
     }
+	
+	static prefix func ! (parser: Parser) -> Parser {
+		return parser.not()
+	}
 }
