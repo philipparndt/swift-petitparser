@@ -47,6 +47,16 @@ class Example {
 }
 ```
 
+Or using operator overloads:
+```swift
+class Example {
+  init() {
+    let id = CP.letter() + (CP.letter() | CP.digit())<*>
+    ...
+  }
+}
+```
+
 If you look at the object `id` in the debugger, you'll notice that the code above builds a tree of parser objects:
 
 - `SequenceParser`: This parser accepts a sequence of parsers.
@@ -111,6 +121,11 @@ So instead of using the letter and digit predicate, we could have written our id
 let id = CP.letter().seq(CP.word().star())
 ```
 
+or even:
+```swift
+let id = CP.letter() + CP.word()<*>
+```
+
 The next set of parsers are used to combine other parsers together:
 
 - `p1.seq(p2)` parses `p1` followed by `p2` (sequence).
@@ -137,6 +152,13 @@ let id_b = CP.letter().seq(CP.word().star()).flatten()
 print(id_b.parse("yeah").get()!) // yeah
 ```
 
+or:
+
+```swift
+let id_b = (CP.letter() +  CP.word()<*>).flatten()
+print(id_b.parse("yeah").get()!) // yeah
+```
+
 To conveniently find all matches in a given input string you can use `Parser#matchesSkipping(String)`:
 
 ```swift
@@ -155,6 +177,9 @@ Now we are able to write a more complicated grammar for evaluating simple arithm
 let number = CP.digit().plus().flatten().trim()
     .map { (d: String) -> Int in Int(d)! }
 
+// let number = CP.digit()<+>.flatten().trim()
+//            .map { (d: String) -> Int in Int(d)! }
+            
 print(number.parse("123").get()!) // 123
 ```
 
