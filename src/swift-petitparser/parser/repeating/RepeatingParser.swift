@@ -48,6 +48,11 @@ public class RepeatingParser: DelegateParser {
     }
 }
 
+postfix operator +
+extension Parser {
+	
+}
+
 extension Parser {
     public func star() -> Parser {
         return repeated(0, RepeatingParser.UNBOUNDED)

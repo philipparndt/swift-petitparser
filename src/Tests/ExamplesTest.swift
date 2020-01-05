@@ -11,30 +11,30 @@ import XCTest
 @testable import swift_petitparser
 
 class ExampleTypes {
-    static let identifier = CP.letter().seq(CP.word().star()).flatten()
+    static let identifier = (CP.letter() + CP.word()<*>).flatten()
 
-    static let NUMBER = CP.of("-").optional()
-        .seq(CP.digit().plus())
-        .seq(CP.of(".").seq(CP.digit().plus()).optional())
+	static let FRACTION = CP.of(".") + CP.digit()<+>
+
+    static let NUMBER = (CP.of("-").optional()
+        + CP.digit()<+> + FRACTION.optional())
         .flatten()
 
-    static let STRING = CP.of("\"")
-        .seq(CP.any().starLazy(CP.of("\"")))
-        .seq(CP.of("\""))
+    static let STRING = (CP.of("\"")
+        + CP.any().starLazy(CP.of("\""))
+        + CP.of("\""))
         .flatten()
         
-    static let RETURN = SP.of("return")
-        .seq(CP.whitespace().plus().flatten())
-        .seq(identifier.or(NUMBER).or(STRING))
+    static let RETURN = (SP.of("return")
+        + CP.whitespace()<+>.flatten()
+        + (identifier | NUMBER | STRING))
         .pick(-1)
     
-    static let JAVADOC = SP.of("/**")
-        .seq(CP.any().starLazy(SP.of("*/")))
-        .seq(SP.of("*/"))
+    static let JAVADOC = (SP.of("/**")
+        + CP.any().starLazy(SP.of("*/"))
+        + SP.of("*/"))
         .flatten()
 
-    static let DOUBLE = CP.digit().plus().seq(CP.of(".")
-        .seq(CP.digit().plus()).optional())
+    static let DOUBLE = (CP.digit()<+> + FRACTION.optional())
         .flatten().trim()
         .map { (d: String) -> Double in Double(d)! }
 }
@@ -43,7 +43,7 @@ class ExampleTypes {
 typealias T = ExampleTypes
 
 class ExamplesTests: XCTestCase {
-    
+	
     func testIdentifierSuccess() {
         Assert.assertSuccess(T.identifier, "a", "a")
         Assert.assertSuccess(T.identifier, "a1", "a1")
@@ -240,30 +240,26 @@ class ExamplesTests: XCTestCase {
      }
 
     func testIPAddress() {
-        let ip = NumbersParser.int(from: 0, to: 255)
-            .seq(CP.of(".").seq(NumbersParser.int(from: 0, to: 255)).times(3))
-            .flatten().trim()
+        let ip = (NumbersParser.int(from: 0, to: 255)
+			+ (CP.of(".") + NumbersParser.int(from: 0, to: 255)).times(3))
+			.flatten().trim()
         
         Assert.assertSuccess(ip, "10.0.0.1", "10.0.0.1")
         Assert.assertSuccess(ip, " 10.0.0.1", "10.0.0.1")
     }
 
     func testHostName() {
-        let host = CP.pattern("a-zA-Z0-9.").plus()
-            .flatten().trim()
+		let host = (CP.word() | CP.of("."))<+>.flatten().trim()
         
         Assert.assertSuccess(host, " some.example.com ", "some.example.com")
     }
     
     func testIPAddressOrHostName() {
-        let ip = NumbersParser.int(from: 0, to: 255)
-            .seq(CP.of(".").seq(NumbersParser.int(from: 0, to: 255)).times(3))
-            .flatten().trim()
+        let ip = (NumbersParser.int(from: 0, to: 255)
+			+ (CP.of(".") + NumbersParser.int(from: 0, to: 255)).times(3))
         
-        let host = CP.pattern("a-zA-Z0-9.").plus()
-            .flatten().trim()
-        
-        let parser = ip.or(host)
+        let host = (CP.word() | CP.of("."))<+>
+        let parser = (ip | host).flatten().trim()
         Assert.assertSuccess(parser, "10.0.0.1", "10.0.0.1")
         Assert.assertSuccess(parser, " 10.0.0.1", "10.0.0.1")
         Assert.assertSuccess(parser, " some.example.com ", "some.example.com")

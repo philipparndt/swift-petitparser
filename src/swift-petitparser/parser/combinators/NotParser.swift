@@ -50,8 +50,4 @@ extension Parser {
     public func not(_ message: String = "unexpected") -> Parser {
       return NotParser(self, message)
     }
-	
-	static prefix func ! (parser: Parser) -> Parser {
-		return parser.not()
-	}
 }

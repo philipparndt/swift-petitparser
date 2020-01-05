@@ -34,8 +34,4 @@ extension Parser {
     public func and() -> Parser {
       return AndParser(self)
     }
-	
-	static func & (lhs: Parser, rhs: Parser) -> Parser {
-        return lhs.and().seq(rhs)
-    }
 }
