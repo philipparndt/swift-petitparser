@@ -304,13 +304,14 @@ PetitParser was originally implemented by Lukas Renggli in
   
  The implementations are very similar in their API and the supported features. If possible, the implementations adopt best practises of the target language.
 
-### Ports
+### Implementations
 
 - [Dart](https://github.com/petitparser/dart-petitparser)
+- [Java](https://github.com/petitparser/java-petitparser)
 - [PHP](https://github.com/mindplay-dk/petitparserphp)
 - [Smalltalk](http://scg.unibe.ch/research/helvetia/petitparser)
-- [TypeScript](https://github.com/mindplay-dk/petitparser-ts)
 - [Swift](https://github.com/philipparndt/swift-petitparser)
+- [TypeScript](https://github.com/mindplay-dk/petitparser-ts)
 
 ### License
 
