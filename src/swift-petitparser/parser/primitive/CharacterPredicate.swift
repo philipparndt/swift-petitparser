@@ -72,6 +72,11 @@ public class CharacterPredicates {
         
         return CharacterPredicate(matcher: { value in
             let index = bisect(starts, value)
+			
+			if index == Int.min {
+				return false
+			}
+			
             return index >= 0 || index < -1 && value <= stops[-index - 2]
         })
     }
@@ -81,17 +86,30 @@ public class CharacterPredicates {
         var max = values.count
         while min < max {
             let mid = min + ((max - min) >> 1)
-            let midValue = values[mid].asciiValue!
+			let midValue = values[mid]
+			
+			if midValue.asciiValue == nil {
+				return Int.min
+			}
+			
+            let midValueAscii = midValue.asciiValue!
             
-            if midValue == value.asciiValue! {
-                return mid
-            }
-            else if midValue < value.asciiValue! {
-                min = mid + 1
-            }
-            else {
-                max = mid
-            }
+			if value.asciiValue != nil {
+				let valueAscii = value.asciiValue!
+				
+				if midValueAscii == valueAscii {
+					return mid
+				}
+				else if midValueAscii < valueAscii {
+					min = mid + 1
+				}
+				else {
+					max = mid
+				}
+			}
+			else {
+				return Int.min
+			}
         }
         return -(min + 1)
     }
