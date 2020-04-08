@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
   spec.swift_version = '5.0'
   spec.name         = "swift-petitparser"
-  spec.version      = "1.2.0"
+  spec.version      = "1.2.1"
   spec.summary      = "PetitParser for Swift - Parser combinator using fluent API"
   spec.description  = <<-DESC
   Parser combinator using fluent API written completely in Swift. This library is available for other languages as well.
