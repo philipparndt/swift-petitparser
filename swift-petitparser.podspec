@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
 
   #  When using multiple platforms
   spec.ios.deployment_target = "13.0"
-  spec.osx.deployment_target = "10.15"
+  spec.osx.deployment_target = "11.2"
   spec.watchos.deployment_target = "6.0"
   spec.tvos.deployment_target = "13.0"
   spec.source       = { :git => "https://github.com/philipparndt/swift-petitparser.git", :tag => "#{spec.version}" }
