@@ -5,11 +5,11 @@ on: [push]
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: macOS-10.15
 
     steps:
     - uses: actions/checkout@v1
     - name: Build
       run: |
           cd src
-          	xcodebuild clean test -project swift-petitparser.xcodeproj -scheme swift-petitparser CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild clean test -project swift-petitparser.xcodeproj -scheme swift-petitparser CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
