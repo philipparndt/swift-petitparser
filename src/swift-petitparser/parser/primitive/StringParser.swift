@@ -9,11 +9,11 @@
 import Foundation
 
 public class StringParser: Parser {
-    let size: String.IndexDistance
+    let size: Int
     let message: String
     let matcher: StringPredicate
-    
-    init(_ size: String.IndexDistance, _ matcher: StringPredicate, _ message: String) {
+
+    init(_ size: Int, _ matcher: StringPredicate, _ message: String) {
         self.size = size
         self.matcher = matcher
         self.message = message
