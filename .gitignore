@@ -1,0 +1,36 @@
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+DerivedData/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Build artifacts
+build/
+*.o
+*.a
+*.dylib
+
+# Code coverage
+*.gcno
+*.gcda
+*.gcov
+coverage/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~

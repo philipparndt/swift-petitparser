@@ -12,17 +12,17 @@ It has been adapted to Swift mainly as coding kata.
 Installation
 ------------
 
-### Swift package 
+### Swift Package Manager
 
-Use `https://github.com/philipparndt/swift-petitparser.git` as Swift package
+Add the following dependency to your `Package.swift`:
 
-### CocoaPod
-
+```swift
+dependencies: [
+    .package(url: "https://github.com/philipparndt/swift-petitparser.git", from: "1.0.0")
+]
 ```
-target 'MyApp' do
-  pod 'swift-petitparser', '~> 1.0'
-end
-```
+
+Or in Xcode: File → Add Package Dependencies → enter `https://github.com/philipparndt/swift-petitparser.git`
 
 Tutorial
 --------

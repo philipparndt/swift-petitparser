@@ -27,7 +27,7 @@ public class Token {
         return String(buffer[start..<stop])
     }
 
-    public func getLength() -> String.IndexDistance {
+    public func getLength() -> Int {
         return buffer.distance(from: start, to: stop)
     }
     
